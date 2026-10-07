@@ -1,4 +1,4 @@
-===== BUILD 2026-10-07T00:30:27Z =====
+===== BUILD 2026-10-07T00:31:44Z =====
 build-tools: /usr/local/lib/android/sdk/build-tools/37.0.0
 platform:    /usr/local/lib/android/sdk/platforms/android-37.2
 android.jar: ok
@@ -8,57 +8,14 @@ res.zip: 2826
 unsigned: 4152
 --- 3. javac ---
 fontes: 10
-src/com/thiairo/mobileai/AiCore.java:146: error: non-static method main(Runnable) cannot be referenced from a static context
-                                main(new Runnable() {
-                                ^
-src/com/thiairo/mobileai/AiCore.java:155: error: non-static method main(Runnable) cannot be referenced from a static context
-                        main(new Runnable() {
-                        ^
-src/com/thiairo/mobileai/AiCore.java:162: error: non-static method main(Runnable) cannot be referenced from a static context
-                        main(new Runnable() {
-                        ^
-src/com/thiairo/mobileai/AiCore.java:294: error: non-static method main(Runnable) cannot be referenced from a static context
-                                    main(new Runnable() {
-                                    ^
-src/com/thiairo/mobileai/AiCore.java:305: error: non-static method main(Runnable) cannot be referenced from a static context
-                        main(new Runnable() {
-                        ^
-src/com/thiairo/mobileai/AiCore.java:310: error: non-static method main(Runnable) cannot be referenced from a static context
-                        main(new Runnable() {
-                        ^
-src/com/thiairo/mobileai/AiCore.java:385: error: non-static method main(Runnable) cannot be referenced from a static context
-                        main(new Runnable() {
-                        ^
-src/com/thiairo/mobileai/AiCore.java:392: error: non-static method main(Runnable) cannot be referenced from a static context
-                        main(new Runnable() {
-                        ^
+src/com/thiairo/mobileai/Screens.java:625: error: variable ok might already have been assigned
+                            catch (Exception e) { ok = false; }
+                                                  ^
+src/com/thiairo/mobileai/Screens.java:1363: error: variable ok might already have been assigned
+                            try { ok = p.saude(); } catch (Exception e) { ok = false; }
+                                                                          ^
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-8 errors
-classes: 20
---- 4. d8 ---
-entradas: 20
-total 12
--rw-r--r-- 1 runner runner 12216 Oct  7 00:30 classes.dex
---- 5. dex no apk ---
-Archive:  build/stack.apk
-  Length      Date    Time    Name
----------  ---------- -----   ----
-     4572  1980-01-01 00:00   AndroidManifest.xml
-      568  1980-01-01 00:00   res/drawable/ic_launcher_bg.xml
-     2100  1980-01-01 00:00   resources.arsc
-    12216  2026-10-07 00:30   classes.dex
----------                     -------
-    19456                     4 files
---- 6. zipalign ---
-alinhado: 10233
---- 7. assinar ---
-	for: CN=MobileAI, OU=Dev, O=Thiairo, L=SP, C=BR
-[Storing build/maie.keystore]
-assinado: 16856
---- 8. verificar ---
-V3.0 Signer: certificate DN: CN=MobileAI, OU=Dev, O=Thiairo, L=SP, C=BR
-V3.0 Signer: certificate SHA-256 digest: 3eee385c7813e7a6b49e2d5e37746accbf982beb84997bafef171de4d3814942
-V3.0 Signer: certificate SHA-1 digest: f14c91128eb722b75d3b3b4d345de347d7a0b0f0
-V3.0 Signer: certificate MD5 digest: a0db9fd972505fca4efca398642c3475
-===== FIM =====
+2 errors
+classes: 58
+FALHA: javac reportou erros — APK seria parcial
