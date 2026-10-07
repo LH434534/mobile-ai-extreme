@@ -620,9 +620,9 @@ public final class Screens {
                     testar.setText("Testando…");
                     new Thread(new Runnable() {
                         @Override public void run() {
-                            final boolean ok;
-                            try { ok = fp.saude(); }
-                            catch (Exception e) { ok = false; }
+                            final boolean[] ok = {false};
+                            try { ok[0] = fp.saude(); }
+                            catch (Exception e) { ok[0] = false; }
                             db.set("status." + fp.id, fp.status);
                             final List<String> modelosDisp = new ArrayList<String>();
                             if (ok) {
@@ -636,12 +636,12 @@ public final class Screens {
                                             + " · latência " + fp.latenciaMs + " ms"
                                             + (modelosDisp.isEmpty() ? ""
                                                : " · " + modelosDisp.size() + " modelo(s)"));
-                                    st.setTextColor(ok ? Design.ok : Design.erro);
-                                    if (ok && !modelosDisp.isEmpty()) {
+                                    st.setTextColor(ok[0] ? Design.ok : Design.erro);
+                                    if (ok[0] && !modelosDisp.isEmpty()) {
                                         fp.modelo = modelosDisp.get(0);
                                         ai.salvarModelo(fp.id, fp.modelo);
                                         aviso("Modelo definido: " + fp.modelo);
-                                    } else if (!ok) {
+                                    } else if (!ok[0]) {
                                         aviso("Sem resposta em " + fp.baseUrl);
                                     }
                                 }
@@ -1359,8 +1359,8 @@ public final class Screens {
                     st.setText("Testando…");
                     new Thread(new Runnable() {
                         @Override public void run() {
-                            final boolean ok;
-                            try { ok = p.saude(); } catch (Exception e) { ok = false; }
+                            final boolean[] ok = {false};
+                            try { ok[0] = p.saude(); } catch (Exception e) { ok[0] = false; }
                             db.set("status." + p.id, p.status);
                             a.runOnUiThread(new Runnable() {
                                 @Override public void run() {
@@ -1368,7 +1368,7 @@ public final class Screens {
                                             + " · " + p.latenciaMs + " ms"
                                             + (p.ultimoErro.isEmpty() ? ""
                                                : " · " + p.ultimoErro));
-                                    st.setTextColor(ok ? Design.ok : Design.erro);
+                                    st.setTextColor(ok[0] ? Design.ok : Design.erro);
                                 }
                             });
                         }
