@@ -1,4 +1,4 @@
-===== BUILD 2026-10-07T00:32:39Z =====
+===== BUILD 2026-10-07T00:33:44Z =====
 build-tools: /usr/local/lib/android/sdk/build-tools/37.0.0
 platform:    /usr/local/lib/android/sdk/platforms/android-37.2
 android.jar: ok
@@ -8,11 +8,32 @@ res.zip: 2826
 unsigned: 4152
 --- 3. javac ---
 fontes: 10
-src/com/thiairo/mobileai/Screens.java:628: error: incompatible types: boolean[] cannot be converted to boolean
-                            if (ok) {
-                                ^
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-1 error
-classes: 58
-FALHA: javac reportou erros — APK seria parcial
+classes: 104
+--- 4. d8 ---
+entradas: 104
+total 116
+-rw-r--r-- 1 runner runner 114980 Oct  7 00:34 classes.dex
+--- 5. dex no apk ---
+Archive:  build/stack.apk
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     4572  1980-01-01 00:00   AndroidManifest.xml
+      568  1980-01-01 00:00   res/drawable/ic_launcher_bg.xml
+     2100  1980-01-01 00:00   resources.arsc
+   114980  2026-10-07 00:34   classes.dex
+---------                     -------
+   122220                     4 files
+--- 6. zipalign ---
+alinhado: 57962
+--- 7. assinar ---
+	for: CN=MobileAI, OU=Dev, O=Thiairo, L=SP, C=BR
+[Storing build/maie.keystore]
+assinado: 66008
+--- 8. verificar ---
+V3.0 Signer: certificate DN: CN=MobileAI, OU=Dev, O=Thiairo, L=SP, C=BR
+V3.0 Signer: certificate SHA-256 digest: 769df7aa010e1f9bdefc9853aaa3376ea70d4e8df17c32ecc0c13426c5e97f0b
+V3.0 Signer: certificate SHA-1 digest: 7f82e50186df591e10418e4240717967e578ee72
+V3.0 Signer: certificate MD5 digest: 0d185d145219fa8fa279066b4fd0d2a0
+===== FIM =====
