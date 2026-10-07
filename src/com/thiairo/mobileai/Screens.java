@@ -625,7 +625,7 @@ public final class Screens {
                             catch (Exception e) { ok[0] = false; }
                             db.set("status." + fp.id, fp.status);
                             final List<String> modelosDisp = new ArrayList<String>();
-                            if (ok) {
+                            if (ok[0]) {
                                 try { modelosDisp.addAll(fp.modelos()); }
                                 catch (Exception e) { /* mantem vazio */ }
                             }
