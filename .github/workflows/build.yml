@@ -47,6 +47,10 @@ jobs:
             -bootclasspath "$ANDROID_JAR" -classpath "$ANDROID_JAR" \
             -d build/obj @build/sources.txt 2>&1 | tail -50
           echo "classes: $(find build/obj -name '*.class' | wc -l)"
+          if grep -q "error:" build.log; then
+            echo "FALHA: javac reportou erros — APK seria parcial"
+            exit 1
+          fi
 
           echo "--- 4. d8 ---"
           find build/obj -name '*.class' > build/classes.txt
