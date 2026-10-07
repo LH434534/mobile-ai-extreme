@@ -1,4 +1,4 @@
-===== BUILD 2026-10-07T00:31:44Z =====
+===== BUILD 2026-10-07T00:32:39Z =====
 build-tools: /usr/local/lib/android/sdk/build-tools/37.0.0
 platform:    /usr/local/lib/android/sdk/platforms/android-37.2
 android.jar: ok
@@ -8,14 +8,11 @@ res.zip: 2826
 unsigned: 4152
 --- 3. javac ---
 fontes: 10
-src/com/thiairo/mobileai/Screens.java:625: error: variable ok might already have been assigned
-                            catch (Exception e) { ok = false; }
-                                                  ^
-src/com/thiairo/mobileai/Screens.java:1363: error: variable ok might already have been assigned
-                            try { ok = p.saude(); } catch (Exception e) { ok = false; }
-                                                                          ^
+src/com/thiairo/mobileai/Screens.java:628: error: incompatible types: boolean[] cannot be converted to boolean
+                            if (ok) {
+                                ^
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-2 errors
+1 error
 classes: 58
 FALHA: javac reportou erros — APK seria parcial
