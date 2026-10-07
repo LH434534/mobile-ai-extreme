@@ -143,7 +143,7 @@ public final class AiCore {
                                 acc.append(pedaco);
                                 ntok[0]++;
                                 final String p = pedaco;
-                                main(new Runnable() {
+                                post(new Runnable() {
                                     @Override public void run() { cb.onToken(p); }
                                 });
                             }
@@ -152,14 +152,14 @@ public final class AiCore {
 
                         final long ms = System.currentTimeMillis() - t0;
                         final int nt = ntok[0];
-                        main(new Runnable() {
+                        post(new Runnable() {
                             @Override public void run() {
                                 cb.onDone(id, modelo, ms, nt);
                             }
                         });
                     } catch (final Exception e) {
                         ultimoErro = String.valueOf(e.getMessage());
-                        main(new Runnable() {
+                        post(new Runnable() {
                             @Override public void run() {
                                 cb.onError(ultimoErro);
                             }
@@ -291,7 +291,7 @@ public final class AiCore {
                                 final String p = msg.optString("content", "");
                                 if (!p.isEmpty()) {
                                     ntok[0]++;
-                                    main(new Runnable() {
+                                    post(new Runnable() {
                                         @Override public void run() { cb.onToken(p); }
                                     });
                                 }
@@ -302,12 +302,12 @@ public final class AiCore {
 
                         final long ms = System.currentTimeMillis() - t0;
                         final int nt = ntok[0];
-                        main(new Runnable() {
+                        post(new Runnable() {
                             @Override public void run() { cb.onDone(id, modelo, ms, nt); }
                         });
                     } catch (final Exception e) {
                         ultimoErro = String.valueOf(e.getMessage());
-                        main(new Runnable() {
+                        post(new Runnable() {
                             @Override public void run() { cb.onError(ultimoErro); }
                         });
                     } finally {
@@ -382,14 +382,14 @@ public final class AiCore {
                         Thread.sleep(160); // evita flash; nao e latencia artificial de rede
                         final String r = responder(pergunta);
                         final int n = r.split("\\s+").length;
-                        main(new Runnable() {
+                        post(new Runnable() {
                             @Override public void run() {
                                 cb.onToken(r);
                                 cb.onDone(id, "regras+ferramentas", 0, n);
                             }
                         });
                     } catch (final Exception e) {
-                        main(new Runnable() {
+                        post(new Runnable() {
                             @Override public void run() { cb.onError(String.valueOf(e.getMessage())); }
                         });
                     }
@@ -452,6 +452,7 @@ public final class AiCore {
     public final List<Provider> provedores = new ArrayList<Provider>();
     public final OfflineEngine offline = new OfflineEngine();
     private final Handler ui = new Handler(Looper.getMainLooper());
+    private static final Handler UI = new Handler(Looper.getMainLooper());
 
     public AiCore(Context c, Store db) {
         this.ctx = c.getApplicationContext();
@@ -610,7 +611,7 @@ public final class AiCore {
                     catch (Exception e) { p.status = "indisponível"; }
                     db.set("status." + p.id, p.status);
                 }
-                main(new Runnable() {
+                post(new Runnable() {
                     @Override public void run() { if (cb != null) cb.onFim(); }
                 });
             }
@@ -661,6 +662,9 @@ public final class AiCore {
     }
 
     private void main(Runnable r) { ui.post(r); }
+
+    /** Postagem estatica: usada dentro de classes aninhadas static. */
+    static void post(Runnable r) { UI.post(r); }
 
     /** Status sempre na thread principal: o callback toca a UI. */
     private static void postar(final Callback cb, final String estado) {
