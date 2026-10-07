@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mobile AI</string>
+    <string name="tagline">Seu centro de inteligência pessoal</string>
+    <string name="nav_home">Início</string>
+    <string name="nav_chat">Conversa</string>
+    <string name="nav_models">Modelos</string>
+    <string name="nav_tools">Ferramentas</string>
+    <string name="nav_docs">Documentos</string>
+    <string name="nav_settings">Ajustes</string>
+    <string name="action_send">Enviar</string>
+    <string name="action_stop">Parar</string>
+    <string name="empty_no_conversations">Nenhuma conversa ainda</string>
+    <string name="empty_no_models">Nenhum modelo instalado</string>
+    <string name="offline_notice">Sem rede. Usando recursos locais.</string>
+</resources>
