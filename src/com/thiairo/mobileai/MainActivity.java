@@ -354,15 +354,27 @@ public class MainActivity extends Activity {
 
     private String pendente = "";
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void processarPendente() {
         if (!pendente.isEmpty()) {
             String p = pendente;
             pendente = "";
             ir("chat");
             enviarParaChat(p);
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent i) {
+        super.onNewIntent(i);
+        setIntent(i);
+        tratarEntrada(i);
+        processarPendente();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        processarPendente();
     }
 
     @Override
